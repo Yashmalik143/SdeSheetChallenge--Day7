@@ -1,0 +1,43 @@
+int length(Node *head){
+      int count=0;
+    Node *curr=head;
+   while(curr!=NULL)
+   {
+       count++;
+       curr =curr->next;
+   }return count;
+}
+int findIntersection(Node *firstHead, Node *secondHead)
+{
+    //Write your code here
+    int l1=length(firstHead);
+    int l2=length(secondHead);
+    Node *ptr1;
+    Node *ptr2;
+    int d=0;
+    if(l1>l2)
+    {
+        d=l1-l2;
+        ptr1=firstHead;
+        ptr2=secondHead;
+    }
+     else
+    {
+        d=l2-l1;
+        ptr2=firstHead;
+        ptr1=secondHead;
+    }
+    while(d)
+    { ptr1=ptr1->next;
+     if(ptr1==NULL)return -1;
+        d--;
+    }
+    while(ptr1!=NULL && ptr2!=NULL)
+    {
+        if(ptr1==ptr2)
+            return ptr1->data;
+        ptr1=ptr1->next;
+        ptr2=ptr2->next;
+    }
+    return -1;
+}
