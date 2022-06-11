@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+long coinChange (int *a, int n, int value, vector < vector < long >>&dp) 
+{
+  
+if (n == 0)
+    {
+      
+return (value % a[n] == 0);
+    
+}
+  
+if (dp[n][value] != -1)
+    {
+      return dp[n][value];
+    }
+  
+ 
+long notTake = coinChange (a, n - 1, value, dp);
+  
+long take = 0;
+  
+if (a[n] <= value)
+    
+take = coinChange (a, n, value - a[n], dp);
+  
+return dp[n][value] = take + notTake;
+
+}
